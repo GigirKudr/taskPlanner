@@ -1,3 +1,4 @@
+package ru.netology.tesks;
 public class SimpleTask extends Task {
     protected String title;
 

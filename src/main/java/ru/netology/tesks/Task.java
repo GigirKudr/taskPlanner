@@ -1,3 +1,4 @@
+package ru.netology.tesks;
 import java.util.Objects;
 public class Task {
     protected int id;

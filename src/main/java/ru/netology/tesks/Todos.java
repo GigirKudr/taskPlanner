@@ -1,3 +1,4 @@
+package ru.netology.tesks;
 public class Todos {
 
     private Task[] tasks = new Task[0]; // <- тут будут все задачи
