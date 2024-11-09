@@ -1,44 +1,77 @@
 package ru.netology.tesks;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class TasksTest {
 
     @Test
-    public void simpleTaskTest(){
+    public void simpleTaskMatches() {
         SimpleTask test = new SimpleTask(2, "Задача");
-        test.matches("Задача");
-
-        Boolean expected = true;
         Boolean actual = test.matches("Задача");
 
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertTrue(actual);
     }
 
     @Test
-    public void epicTest(){
-        String[] subtasks = { "Молоко", "Яйца", "Хлеб" };
-        Epic test = new Epic(2, subtasks);
-        test.matches("Молоко");
+    public void simpleTaskNotMatches() {
+        SimpleTask test = new SimpleTask(2, "Задача");
+        Boolean actual = test.matches("Конь");
 
-        Boolean expected = true;
+        Assertions.assertFalse(actual);
+    }
+
+    @Test
+    public void epicMatches() {
+        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
+        Epic test = new Epic(2, subtasks);
         Boolean actual = test.matches("Молоко");
 
-        Assertions.assertEquals(expected, actual);
+
+        Assertions.assertTrue(actual);
     }
 
     @Test
-    public void meetingTest(){
+    public void epicNotMatches() {
+        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
+        Epic test = new Epic(2, subtasks);
+        Boolean actual = test.matches("Сметана");
+
+
+        Assertions.assertFalse(actual);
+    }
+
+    @Test
+    public void meetingMatchesTopic() {
         Meeting test = new Meeting(555,
                 "Выкатка 3й версии приложения",
                 "Приложение НетоБанка",
                 "Во вторник после обеда");
-        test.matches("Молоко");
+        Boolean actual = test.matches("Выкатка 3й версии приложения");
 
-        Boolean expected = false;
-        Boolean actual = test.matches("Молоко");
+        Assertions.assertTrue(actual);
+    }
 
-        Assertions.assertEquals(expected, actual);
+    @Test
+    public void meetingNotMatches() {
+        Meeting test = new Meeting(555,
+                "Выкатка 3й версии приложения",
+                "Приложение НетоБанка",
+                "Во вторник после обеда");
+        Boolean actual = test.matches("Приложение ВТБ");
+
+        Assertions.assertFalse(actual);
+    }
+
+    @Test
+    public void meetingMatchesProject() {
+        Meeting test = new Meeting(555,
+                "Выкатка 3й версии приложения",
+                "Приложение НетоБанка",
+                "Во вторник после обеда");
+        Boolean actual = test.matches("Приложение НетоБанка");
+
+        Assertions.assertTrue(actual);
     }
 
 }
